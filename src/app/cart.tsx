@@ -10,7 +10,7 @@ export default function CartScreen() {
         <View style={styles.container}>
             <FlatList
                 data={items}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
                 renderItem={({item}) => <CartBox item={item}/>}
                 ListHeaderComponent={
                     <>

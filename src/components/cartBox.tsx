@@ -1,10 +1,13 @@
-import { CartItem, Product } from "@/context/CartContext"
+import { CartItem } from "@/context/CartContext"
 import { useCart } from "@/hooks/useCart"
 import { FontAwesome5 } from "@expo/vector-icons"
 import { View, Image, Text, Pressable, StyleSheet } from "react-native"
 
+type Props = {
+    item: CartItem;
+}
 
-export const CartBox = (/**AQUI VAI A PROPS COMO PARAMETRO */) => {
+export const CartBox = ({ item }: Props) => {
     const {removeFromCart} = useCart()
     return (
         <View style={styles.cartContainer}>

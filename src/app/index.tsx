@@ -11,7 +11,8 @@ export default function ProductScreen(){
     const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(()=>{
-    },)
+        handlerProduct()
+    }, [])
 
     const handlerProduct = async() => {
         setLoading(true)
@@ -30,7 +31,7 @@ export default function ProductScreen(){
             <Text style={styles.title}>ShoppeeExpo</Text>
             <FlatList 
                 data={products}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
                 numColumns={2}
                 showsVerticalScrollIndicator={false}
                 renderItem={({item}) => <CardItem item={item}/>}

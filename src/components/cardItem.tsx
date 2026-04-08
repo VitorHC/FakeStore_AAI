@@ -3,8 +3,11 @@ import { useCart } from "@/hooks/useCart"
 import { useWidth } from "@/hooks/useWidth"
 import { View, Image, Text, Button, StyleSheet } from "react-native"
 
+type Props = {
+    item: Product;
+}
 
-export const CardItem = () => {
+export const CardItem = ({ item }: Props) => {
     const {addToCart} = useCart()
     const itemWidth = useWidth(2)
 

@@ -3,30 +3,30 @@ import { createContext, ReactNode, useState } from "react"
 
 //TIPAGEM DO PRODUTO
 export type Product = {
-    id: string;
+    id: number;
     title: string;
     price: number;
-    description: ;
-    category: ;
-    image: ;
+    description: string;
+    category: string;
+    image: string;
 }
 
 //TIPAGEM DO CARRINHO, JÁ RECEBE A TIPAGEM DO PRODUTO E QUANTIDADE
 export type CartItem = Product & {
-    quantity: ;
+    quantity: number;
 }
 
 //A TYPAGEM DO QUE A NOSSA APLICAÇAO PRECISA UTILIZAR 
 //ITEMS, ADICIONAR UM ITEM NO CARRINHO, REMOVER UM ITEM DO CARRINHO E TOTAL
 type CartContextType = {
     items: CartItem[];
-    addToCart: (product: string) => void;
-    removeFromCart: (id: string) => void;
+    addToCart: (product: Product) => void;
+    removeFromCart: (id: number) => void;
     total: number;
 }
 
 //CRIANDO O CONTEXTO QUE RECEBE A TIPAGEM DO CARRINHO
-export const CartContext = createContext({} as null)
+export const CartContext = createContext({} as CartContextType)
 
 //CRIAMOS O PROVEDOR QUE VAI ENGLOBAR NOSSA APLICAÇÃO. POR CAUSA DO PROVIDER É QUE OUTROS ARQUIVOS
 //CONSEGUEM ACESSAR AS FUNÇÕES.
@@ -45,7 +45,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         })
     }
 
-    const removeFromCart = (id: string) => {
+    const removeFromCart = (id: number) => {
         setItems(prev => prev.filter(p => p.id !== id))
     }
 
@@ -55,7 +55,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     )
 
     return (
-        <CartContext.Provider value={{items, total}}>
+        <CartContext.Provider value={{items, total, addToCart, removeFromCart}}>
             {children}
         </CartContext.Provider>
     )
